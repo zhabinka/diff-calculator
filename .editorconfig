@@ -4,3 +4,8 @@ indent_style = tab
 [*.js]
 indent_style = space
 indent_size = 2
+
+# unix-совместимые переносы строк
+[*]
+end_of_line = lf
+insert_final_newline = true

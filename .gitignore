@@ -4,3 +4,6 @@ dist
 flow-typed
 .tern-port
 .idea
+.bash_history
+.cache/
+.config/

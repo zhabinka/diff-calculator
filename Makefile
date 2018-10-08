@@ -1,10 +1,16 @@
 # Makefile
 
+i:
+	npm install
+
+in:
+	npm install
+
 install:
 	npm install
 
 start:
-	npm run babel-node -- src/bin/brain-progression.js
+	npm run babel-node -- src/bin/gendiff.js
 
 publish:
 	npm publish
@@ -17,15 +23,15 @@ test:
 
 build:
 	rm -rf dist
-	npm run-script build
+	npm run build
 
 list:
 	npm list -g --depth=0
 
 up:
-	npm install braingames-start -g
+	npm install diff-config -g
 
 out:
-	npm uninstall braingames-start -g
+	npm uninstall diff-config -g
 
 .PHONY: test
