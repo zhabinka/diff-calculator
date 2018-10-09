@@ -7,3 +7,4 @@ flow-typed
 .bash_history
 .cache/
 .config/
+.npm/

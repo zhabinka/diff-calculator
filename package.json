@@ -22,17 +22,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhabinka/diff-calculator.git"
+    "url": "git+https://github.com/zhabinka/diff-config.git"
   },
   "author": "Zhabinka",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zhabinka/diff-calculator/issues"
+    "url": "https://github.com/zhabinka/diff-config/issues"
   },
   "jest": {
     "testEnvironment": "node"
   },
-  "homepage": "https://github.com/zhabinka/diff-calculator#readme",
+  "homepage": "https://github.com/zhabinka/diff-config#readme",
   "dependencies": {
     "commander": "^2.18.0"
   },
