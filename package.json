@@ -1,6 +1,6 @@
 {
   "name": "diff-config",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Hexlet project #2: Difference Calculator Configuration Files",
   "main": "dist/index.js",
   "bin": {
@@ -34,7 +34,8 @@
   },
   "homepage": "https://github.com/zhabinka/diff-config#readme",
   "dependencies": {
-    "commander": "^2.18.0"
+    "commander": "^2.18.0",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

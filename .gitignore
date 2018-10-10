@@ -8,3 +8,4 @@ flow-typed
 .cache/
 .config/
 .npm/
+src/resultStr.txt
