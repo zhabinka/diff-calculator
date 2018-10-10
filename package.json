@@ -1,6 +1,6 @@
 {
   "name": "diff-config",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Hexlet project #2: Difference Calculator Configuration Files",
   "main": "dist/index.js",
   "bin": {
@@ -41,6 +41,7 @@
     "@babel/core": "^7.1.0",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
