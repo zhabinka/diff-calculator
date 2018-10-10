@@ -1,22 +1,18 @@
 # Makefile
-
-i:
-	npm install
-
-in:
-	npm install
-
 install:
-	npm install
+	install-dep
+
+install-dep:
+	npm i
 
 start:
-	npm run babel-node -- src/bin/gendiff.js
+	npx babel-node -- src/bin/gendiff.js -h
 
 publish:
 	npm publish
 
 lint:
-	npm run eslint .
+	npx eslint .
 
 test:
 	npm test
