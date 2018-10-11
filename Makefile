@@ -6,7 +6,7 @@ install-dep:
 	npm i
 
 start:
-	npx babel-node -- src/bin/gendiff.js -h
+	npx babel-node -- src/bin/gendiff.js ./src/files/before.ini ./src/files/after.yml
 
 publish:
 	npm publish
