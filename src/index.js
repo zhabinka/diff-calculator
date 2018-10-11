@@ -3,24 +3,26 @@ import parsers from './parsers';
 
 const genDiff = (file1, file2) => {
   const diff = (before, after) => {
-    const aa = Object.entries(before).map(([key, value]) => {
-      if (_.has(after, key)) {
-        if (value === after[key]) {
-          return `    ${key}: ${value}`;
-        }
+    const keysUnion = _.union(Object.keys(before), Object.keys(after));
 
-        return `  + ${key}: ${after[key]},  - ${key}: ${value}`.split(',');
+    const compareKeys = key => (before[key] === after[key]
+      ? `    ${key}: ${after[key]}`
+      : `  + ${key}: ${after[key]},  - ${key}: ${before[key]}`.split(','));
+
+    const result = keysUnion.map((el) => {
+      if (_.has(before, el) && _.has(after, el)) {
+        return compareKeys(el);
       }
 
-      return `  - ${key}: ${value}`;
+      return _.has(after, el) ? `  + ${el}: ${after[el]}` : `  - ${el}: ${before[el]}`;
     });
 
-    const bb = Object.entries(after).map(([key, value]) => (!_.has(before, key) ? `  + ${key}: ${value}` : ''));
+    // const resultToString = _.concat('{', _.flatten(result), '}', '').join('\n');
+    // return resultToString;
 
-    const result = _.concat('{', aa, bb.filter(x => x), '}', '');
-    const resultStr = _.flatten(result).join('\n');
-
-    return resultStr;
+    return ['{']
+      .concat(_.flatten(result), '}', '')
+      .join('\n');
   };
 
   return diff(parsers(file1), parsers(file2));
