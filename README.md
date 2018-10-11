@@ -12,7 +12,9 @@ make up
 ```
 
 ### Step 1
+
 Install [NPM-package](https://www.npmjs.com/package/diff-config) and run `gendiff` CLI.
+
 [![asciicast](https://asciinema.org/a/205287.png)](https://asciinema.org/a/205287)
 
 ### Tests
@@ -22,9 +24,15 @@ make test
 ```
 
 ### Step 2
+
 - Calculation of differences in flat files.
 - Tests added.
 
-> **Note:** Test run on Travis-CI passed - https://travis-ci.org/zhabinka/diff-config/builds/439571370
-
 [![asciicast](https://asciinema.org/a/YLvuzoDSXymAoBgKiMB17LEtE.png)](https://asciinema.org/a/YLvuzoDSXymAoBgKiMB17LEtE)
+
+### Step 3
+
+- Added YAML format.
+- Dispatch based format selection.
+
+[![asciicast](https://asciinema.org/a/HwDmY0cyhWUeDJWiYti7MpQXp.png)](https://asciinema.org/a/HwDmY0cyhWUeDJWiYti7MpQXp)
