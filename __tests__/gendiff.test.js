@@ -1,6 +1,5 @@
 // @flow
 import fs from 'fs';
-import yaml from 'js-yaml';
 import genDiff from '../src';
 
 const result = fs.readFileSync('./__tests__/__fixtures__/result.txt', 'utf-8');

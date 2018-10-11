@@ -9,4 +9,3 @@ flow-typed
 .config/
 .npm/
 .npmrc
-src/resultStr.txt
