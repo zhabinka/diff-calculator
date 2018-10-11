@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import parsers from './parsers';
+import formatData from './format';
 
 const genDiff = (file1, file2) => {
   const diff = (before, after) => {
@@ -25,7 +25,7 @@ const genDiff = (file1, file2) => {
       .join('\n');
   };
 
-  return diff(parsers(file1), parsers(file2));
+  return diff(formatData(file1), formatData(file2));
 };
 
 export default genDiff;
