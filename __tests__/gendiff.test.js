@@ -5,13 +5,19 @@ import genDiff from '../src';
 const result = fs.readFileSync('./__tests__/__fixtures__/result.txt', 'utf-8');
 
 test('JSON diff configuration', () => {
-  const before = './__tests__/__fixtures__/before.json';
-  const after = './__tests__/__fixtures__/after.json';
-  expect(genDiff(before, after)).toBe(result);
+  const beforeJSON = './__tests__/__fixtures__/before.json';
+  const afterJSON = './__tests__/__fixtures__/after.json';
+  expect(genDiff(beforeJSON, afterJSON)).toBe(result);
 });
 
 test('YAML diff configuration', () => {
   const beforeYAML = './__tests__/__fixtures__/before.yml';
   const afterYAML = './__tests__/__fixtures__/after.yml';
   expect(genDiff(beforeYAML, afterYAML)).toBe(result);
+});
+
+test('.ini diff configuration', () => {
+  const beforeINI = './__tests__/__fixtures__/before.ini';
+  const afterINI = './__tests__/__fixtures__/after.ini';
+  expect(genDiff(beforeINI, afterINI)).toBe(result);
 });

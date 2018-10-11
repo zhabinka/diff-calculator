@@ -6,6 +6,7 @@
 Hexlet Project #2: Difference Calculator Configuration Files
 
 ### Installation
+
 ```
 npm install diff-config -g
 make up
@@ -36,3 +37,9 @@ make test
 - Dispatch based format selection.
 
 [![asciicast](https://asciinema.org/a/HwDmY0cyhWUeDJWiYti7MpQXp.png)](https://asciinema.org/a/HwDmY0cyhWUeDJWiYti7MpQXp)
+
+### Step 4
+
+Added ini format.
+
+[![asciicast](https://asciinema.org/a/zor5SBMMSsQYgy7IUgsRqA6T3.png)](https://asciinema.org/a/zor5SBMMSsQYgy7IUgsRqA6T3)
