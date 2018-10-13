@@ -5,8 +5,17 @@ install:
 install-dep:
 	npm i
 
-start:
-	npx babel-node -- src/bin/gendiff.js ./src/files/before.ini ./src/files/after.yml
+run:
+	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/before.json ./__tests__/__fixtures__/after.json
+
+json:
+	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
+
+yaml:
+	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.yaml ./__tests__/__fixtures__/afterDeep.yaml
+
+ini:
+	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.ini ./__tests__/__fixtures__/afterDeep.ini
 
 publish:
 	npm publish
