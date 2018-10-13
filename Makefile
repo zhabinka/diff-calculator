@@ -9,13 +9,13 @@ run:
 	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/before.json ./__tests__/__fixtures__/after.json
 
 json:
-	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
+	gendiff ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
 yaml:
-	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.yaml ./__tests__/__fixtures__/afterDeep.yaml
+	gendiff ./__tests__/__fixtures__/beforeDeep.yml ./__tests__/__fixtures__/afterDeep.yml
 
 ini:
-	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.ini ./__tests__/__fixtures__/afterDeep.ini
+	gendiff ./__tests__/__fixtures__/beforeDeep.ini ./__tests__/__fixtures__/afterDeep.ini
 
 publish:
 	npm publish

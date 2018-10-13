@@ -6,31 +6,23 @@
 
 Hexlet Project #2: Difference Calculator Configuration Files
 
-### Installation
+### Make commands
 
 ```
 npm install diff-config -g
-make up
+make up # Instalation
+make test # Test run
+make json # Usage example
+genfiff -h # Help
+genfiff file1 file2 # Using
 ```  
-### Tests
 
-```
-make test
-```
+### Steps
 
-### Step 1
+1. Install [NPM-package](https://www.npmjs.com/package/diff-config) and run `gendiff` CLI.
+2. Calculation of differences in flat files. Tests added.
+3. Added YAML format.
+4. Added ini format.
+5. Nested structure processed.
 
-Install [NPM-package](https://www.npmjs.com/package/diff-config) and run `gendiff` CLI.
-
-### Step 2
- 
-- Calculation of differences in flat files.
-- Tests added.
-
-### Step 3-4
-
-- Added YAML format.
-- Added ini format.
-- Dispatch based format selection.
-
-[![asciicast](https://asciinema.org/a/BRi5x6RDlHpX2FGum6RDdGzK1.png)](https://asciinema.org/a/BRi5x6RDlHpX2FGum6RDdGzK1)
+[![asciicast](https://asciinema.org/a/206286.png)](https://asciinema.org/a/206286)
