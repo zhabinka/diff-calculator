@@ -1,5 +1,0 @@
-host: hexlet.io
-sitename: Hexlet project #2
-IP: 127.0.0.1
-timeout: 50
-verbose: true
