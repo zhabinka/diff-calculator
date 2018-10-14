@@ -6,7 +6,7 @@ program
   .version('0.6.0')
   .arguments('<firstConfig> <secondConfig>')
   .description('Compares two configuration files and shows a difference.')
-  .option('-f, --format [type]', 'output format', 'plain')
+  .option('-f, --format [type]', 'output format', 'tree')
   .parse(process.argv);
 
 const files = program.args;

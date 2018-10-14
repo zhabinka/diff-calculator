@@ -1,14 +1,6 @@
-const f = {
-  identity: (key, before, after, depth) => `${'  '.repeat(depth)}    ${key}: ${before}`,
-  add: (key, before, after, depth) => `${'  '.repeat(depth)}  + ${key}: ${after}`,
-  delete: (key, before, after, depth) => `${'  '.repeat(depth)}  - ${key}: ${before}`,
-  // eslint-disable-next-line
-  replace: (key, before, after, depth) => `${'  '.repeat(depth)}${f.delete(key, before, after)}` + '\n' + `${'  '.repeat(depth)}${f.add(key, before, after)}`,
-};
-
 const stringify = (value, depth) => {
   if (value instanceof Object) {
-    const output = Object.entries(value).map(([key, val]) => f.identity(key, val, val, depth + 2));
+    const output = Object.entries(value).map(([key, val]) => f.unchange(key, val, depth + 2));
 
     return ['{']
       .concat(output, `${'  '.repeat(depth + 2)}}`)
@@ -18,20 +10,26 @@ const stringify = (value, depth) => {
   return value;
 };
 
+const f = {
+  add: (key, value, depth) => `${'  '.repeat(depth)}  + ${key}: ${stringify(value, depth)}`,
+  delete: (key, value, depth) => `${'  '.repeat(depth)}  - ${key}: ${stringify(value, depth)}`,
+  unchange: (key, value, depth) => `${'  '.repeat(depth)}    ${key}: ${stringify(value, depth)}`,
+  change: (key, value, depth) => {
+    const [before, after] = value;
+    // eslint-disable-next-line
+    return `${'  '.repeat(depth)}  - ${key}: ${stringify(before, depth)}` + '\n' + `${'  '.repeat(depth)}  + ${key}: ${stringify(after, depth)}`;
+  },
+};
+
 const renderTree = (ast) => {
-  const iter = (data, depth) => {
-    const output = data.map((el) => {
-      if (el.type === 'nested') {
-        return `${'  '.repeat(depth)}    ${el.key}: ${iter(el.children, depth + 2)}`;
+  const iter = (nodesList, depth) => {
+    const output = nodesList.map((node) => {
+      if (node.type === 'nested') {
+        return `${'  '.repeat(depth)}    ${node.key}: ${iter(node.children, depth + 2)}`;
       }
+      const { key, type, value } = node;
 
-      const {
-        operation,
-        before,
-        after,
-      } = el.value;
-
-      return f[operation](el.key, stringify(before, depth), stringify(after, depth), depth);
+      return f[type](key, value, depth);
     });
 
     return ['{']
