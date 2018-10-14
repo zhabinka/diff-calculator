@@ -28,10 +28,10 @@ const renderJSON = (ast) => {
 
       return f[type](key, value);
     });
-    
+
     return output;
   };
-  
+
   return iter(ast);
 };
 

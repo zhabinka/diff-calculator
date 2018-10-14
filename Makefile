@@ -8,6 +8,9 @@ install-dep:
 run:
 	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
+tree:
+	gendiff --format tree ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
+
 plain:
 	gendiff --format plain ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
