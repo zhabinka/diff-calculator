@@ -6,7 +6,7 @@ const stringify = value => (_.isObject(value) ? '[complex value]' : value);
 const f = {
   add: (key, value, path) => `Property '${getPropertyName(key, path)}' was added with value: '${stringify(value)}'`,
   delete: (key, value, path) => `Property '${getPropertyName(key, path)}' was removed`,
-  unchange: (key, value, path) => `Property '${getPropertyName(key, path)}' remains unchanged`,
+  unchange: (key, value, path) => [],
   change: (key, value, path) => {
     const [before, after] = value;
     return `Property '${getPropertyName(key, path)}' was updated. From ${stringify(before)} to ${stringify(after)}`;
