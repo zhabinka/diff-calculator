@@ -24,5 +24,6 @@ genfiff file1 file2 # Using
 3. Added YAML format.
 4. Added ini format.
 5. Nested structure processed.
+6. Added plain output format.
 
-[![asciicast](https://asciinema.org/a/206286.png)](https://asciinema.org/a/206286)
+[![asciicast](https://asciinema.org/a/206380.png)](https://asciinema.org/a/206380)
