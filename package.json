@@ -1,6 +1,6 @@
 {
   "name": "diff-config",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Hexlet project #2: Difference Calculator Configuration Files",
   "main": "dist/index.js",
   "bin": {

@@ -25,5 +25,6 @@ genfiff file1 file2 # Using
 4. Added ini format.
 5. Nested structure processed.
 6. Added plain output format.
+7. Added JSON output format.
 
-[![asciicast](https://asciinema.org/a/206380.png)](https://asciinema.org/a/206380)
+[![asciicast](https://asciinema.org/a/206435.png)](https://asciinema.org/a/206435)

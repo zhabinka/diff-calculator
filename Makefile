@@ -11,8 +11,8 @@ run:
 plain:
 	gendiff --format plain ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
-plainshort:
-	gendiff -f plain ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
+json:
+	npx babel-node -- src/bin/gendiff.js -f json ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
 publish:
 	npm publish
