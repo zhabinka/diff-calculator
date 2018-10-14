@@ -6,16 +6,13 @@ install-dep:
 	npm i
 
 run:
-	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/before.json ./__tests__/__fixtures__/after.json
+	npx babel-node -- src/bin/gendiff.js ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
-json:
-	gendiff ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
+plain:
+	gendiff --format plain ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
-yaml:
-	gendiff ./__tests__/__fixtures__/beforeDeep.yml ./__tests__/__fixtures__/afterDeep.yml
-
-ini:
-	gendiff ./__tests__/__fixtures__/beforeDeep.ini ./__tests__/__fixtures__/afterDeep.ini
+plainshort:
+	gendiff -f plain ./__tests__/__fixtures__/beforeDeep.json ./__tests__/__fixtures__/afterDeep.json
 
 publish:
 	npm publish

@@ -18,7 +18,7 @@ const stringify = (value, depth) => {
   return value;
 };
 
-const render = (ast) => {
+const renderTree = (ast) => {
   const iter = (data, depth) => {
     const output = data.map((el) => {
       if (el.type === 'nested') {
@@ -42,4 +42,4 @@ const render = (ast) => {
   return iter(ast, 0);
 };
 
-export default render;
+export default renderTree;
