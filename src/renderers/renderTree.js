@@ -5,9 +5,7 @@ const stringify = (node, depth) => {
     const output = Object.entries(node)
       .map(([key, value]) => f.unchange({ key, value }, depth + 2));
 
-    return ['{']
-      .concat(output, `${'  '.repeat(depth + 2)}}`)
-      .join('\n');
+    return `{\n${output.join('\n')}\n${'  '.repeat(depth + 2)}}`;
   }
 
   return node;
@@ -32,9 +30,7 @@ const renderTree = (ast) => {
   const iter = (nodesList, depth) => {
     const output = nodesList.map(node => f[node.type](node, depth, iter));
 
-    return ['{']
-      .concat(_.flatten(output), `${'  '.repeat(depth)}}`)
-      .join('\n');
+    return `{\n${_.flatten(output).join('\n')}\n${'  '.repeat(depth)}}`;
   };
 
   return iter(ast, 0);
