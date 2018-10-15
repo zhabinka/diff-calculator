@@ -7,7 +7,7 @@ const buildAst = (before, after) => {
     if (before[key] instanceof Object && after[key] instanceof Object) {
       return {
         key,
-        type: 'nested',
+        type: 'nest',
         children: buildAst(before[key], after[key]),
       };
     }
@@ -25,13 +25,20 @@ const buildAst = (before, after) => {
         value: before[key],
       };
     }
-    if (_.has(after, key) && _.has(before, key)) {
-      return (before[key] === after[key]
-        ? { key, type: 'unchange', value: before[key] }
-        : { key, type: 'change', value: [before[key], after[key]] });
+    if (_.has(after, key) && _.has(before, key) && before[key] === after[key]) {
+      return {
+        key,
+        type: 'unchange',
+        value: before[key],
+      };
     }
 
-    return null;
+    return {
+      key,
+      type: 'change',
+      valueBefore: before[key],
+      valueAfter: after[key],
+    };
   });
 
   return ast;

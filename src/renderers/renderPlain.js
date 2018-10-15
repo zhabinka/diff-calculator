@@ -4,25 +4,19 @@ const getPropertyName = (property, parents) => [...parents, property].join('.');
 const stringify = value => (_.isObject(value) ? '[complex value]' : value);
 
 const f = {
-  add: (key, value, path) => `Property '${getPropertyName(key, path)}' was added with value: '${stringify(value)}'`,
-  delete: (key, value, path) => `Property '${getPropertyName(key, path)}' was removed`,
+  nest: (node, path, func) => func(node.children, [...path, node.key]),
+  add: (node, path) => `Property '${getPropertyName(node.key, path)}' was added with value: '${stringify(node.value)}'`,
+  delete: (node, path) => `Property '${getPropertyName(node.key, path)}' was removed`,
   unchange: () => [],
-  change: (key, value, path) => {
-    const [before, after] = value;
-    return `Property '${getPropertyName(key, path)}' was updated. From ${stringify(before)} to ${stringify(after)}`;
+  change: (node, path) => {
+    const { key, type, valueBefore, valueAfter}  = node;
+    return `Property '${getPropertyName(key, path)}' was updated. From ${stringify(valueBefore)} to ${stringify(valueAfter)}`;
   },
 };
 
 const renderPlain = (ast) => {
   const iter = (nodesList, currentPath) => {
-    const output = nodesList.map((node) => {
-      if (node.type === 'nested') {
-        return iter(node.children, [...currentPath, node.key]);
-      }
-      const { key, type, value } = node;
-
-      return f[type](key, value, currentPath);
-    });
+    const output = nodesList.map((node) => f[node.type](node, currentPath, iter));
 
     return _.flatten(output).join('\n');
   };

@@ -1,6 +1,6 @@
 const stringify = (value, depth) => {
   if (value instanceof Object) {
-    const output = Object.entries(value).map(([key, val]) => f.unchange(key, val, depth + 2));
+    const output = Object.entries(value).map(([key, value]) => f.unchange({ key, value }, depth + 2));
 
     return ['{']
       .concat(output, `${'  '.repeat(depth + 2)}}`)
@@ -11,26 +11,20 @@ const stringify = (value, depth) => {
 };
 
 const f = {
-  add: (key, value, depth) => `${'  '.repeat(depth)}  + ${key}: ${stringify(value, depth)}`,
-  delete: (key, value, depth) => `${'  '.repeat(depth)}  - ${key}: ${stringify(value, depth)}`,
-  unchange: (key, value, depth) => `${'  '.repeat(depth)}    ${key}: ${stringify(value, depth)}`,
-  change: (key, value, depth) => {
-    const [before, after] = value;
+  nest: (node, depth, func) => `${'  '.repeat(depth)}    ${node.key}: ${func(node.children, depth + 2)}`,
+  add: (node, depth) => `${'  '.repeat(depth)}  + ${node.key}: ${stringify(node.value, depth)}`,
+  delete: (node, depth) => `${'  '.repeat(depth)}  - ${node.key}: ${stringify(node.value, depth)}`,
+  unchange: (node, depth) => `${'  '.repeat(depth)}    ${node.key}: ${stringify(node.value, depth)}`,
+  change: (node, depth) => {
+    const { key, type, valueBefore, valueAfter}  = node;
     // eslint-disable-next-line
-    return `${'  '.repeat(depth)}  - ${key}: ${stringify(before, depth)}` + '\n' + `${'  '.repeat(depth)}  + ${key}: ${stringify(after, depth)}`;
+    return `${'  '.repeat(depth)}  - ${key}: ${stringify(valueBefore, depth)}` + '\n' + `${'  '.repeat(depth)}  + ${key}: ${stringify(valueAfter, depth)}`;
   },
 };
 
 const renderTree = (ast) => {
   const iter = (nodesList, depth) => {
-    const output = nodesList.map((node) => {
-      if (node.type === 'nested') {
-        return `${'  '.repeat(depth)}    ${node.key}: ${iter(node.children, depth + 2)}`;
-      }
-      const { key, type, value } = node;
-
-      return f[type](key, value, depth);
-    });
+    const output = nodesList.map((node) => f[node.type](node, depth, iter));
 
     return ['{']
       .concat(output, `${'  '.repeat(depth)}}`)
