@@ -1,13 +1,16 @@
-const stringify = (value, depth) => {
-  if (value instanceof Object) {
-    const output = Object.entries(value).map(([key, val]) => f.unchange({ key, val }, depth + 2));
+import _ from 'lodash';
+
+const stringify = (node, depth) => {
+  if (node instanceof Object) {
+    const output = Object.entries(node)
+      .map(([key, value]) => f.unchange({ key, value }, depth + 2));
 
     return ['{']
       .concat(output, `${'  '.repeat(depth + 2)}}`)
       .join('\n');
   }
 
-  return value;
+  return node;
 };
 
 const f = {
@@ -18,7 +21,10 @@ const f = {
   change: (node, depth) => {
     const { key, valueBefore, valueAfter } = node;
 
-    return `${'  '.repeat(depth)}  - ${key}: ${stringify(valueBefore, depth)}\n${'  '.repeat(depth)}  + ${key}: ${stringify(valueAfter, depth)}`;
+    const before = `${'  '.repeat(depth)}  - ${key}: ${stringify(valueBefore, depth)}`;
+    const after = `${'  '.repeat(depth)}  + ${key}: ${stringify(valueAfter, depth)}`;
+
+    return [before, after];
   },
 };
 
@@ -27,7 +33,7 @@ const renderTree = (ast) => {
     const output = nodesList.map(node => f[node.type](node, depth, iter));
 
     return ['{']
-      .concat(output, `${'  '.repeat(depth)}}`)
+      .concat(_.flatten(output), `${'  '.repeat(depth)}}`)
       .join('\n');
   };
 
