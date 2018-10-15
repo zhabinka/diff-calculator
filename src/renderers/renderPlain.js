@@ -9,14 +9,15 @@ const f = {
   delete: (node, path) => `Property '${getPropertyName(node.key, path)}' was removed`,
   unchange: () => [],
   change: (node, path) => {
-    const { key, type, valueBefore, valueAfter}  = node;
+    const { key, valueBefore, valueAfter } = node;
+
     return `Property '${getPropertyName(key, path)}' was updated. From ${stringify(valueBefore)} to ${stringify(valueAfter)}`;
   },
 };
 
 const renderPlain = (ast) => {
   const iter = (nodesList, currentPath) => {
-    const output = nodesList.map((node) => f[node.type](node, currentPath, iter));
+    const output = nodesList.map(node => f[node.type](node, currentPath, iter));
 
     return _.flatten(output).join('\n');
   };

@@ -9,5 +9,5 @@ program
   .option('-f, --format [type]', 'output format', 'tree')
   .action((firstConfig, secondConfig) => {
     console.log(genDiff(firstConfig, secondConfig, program.format));
-  })    
+  })
   .parse(process.argv);
