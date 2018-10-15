@@ -1,11 +1,10 @@
 import renderPlane from './renderPlain';
 import renderTree from './renderTree';
-import renderJSON from './renderJSON';
 
 const renderList = {
   plain: renderPlane,
   tree: renderTree,
-  json: renderJSON,
+  json: ast => JSON.stringify(ast, null, ' '),
 };
 
 export default (ast, type) => renderList[type](ast);
