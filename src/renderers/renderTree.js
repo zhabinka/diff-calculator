@@ -18,7 +18,7 @@ const f = {
   change: (node, depth) => {
     const { key, type, valueBefore, valueAfter}  = node;
     // eslint-disable-next-line
-    return `${'  '.repeat(depth)}  - ${key}: ${stringify(valueBefore, depth)}` + '\n' + `${'  '.repeat(depth)}  + ${key}: ${stringify(valueAfter, depth)}`;
+    return `${'  '.repeat(depth)}  - ${key}: ${stringify(valueBefore, depth)}\n${'  '.repeat(depth)}  + ${key}: ${stringify(valueAfter, depth)}`;
   },
 };
 
