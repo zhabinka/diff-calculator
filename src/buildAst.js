@@ -4,13 +4,6 @@ const buildAst = (before, after) => {
   const keysUnion = _.union(Object.keys(before), Object.keys(after));
 
   const ast = keysUnion.map((key) => {
-    if (before[key] instanceof Object && after[key] instanceof Object) {
-      return {
-        key,
-        type: 'nest',
-        children: buildAst(before[key], after[key]),
-      };
-    }
     if (_.has(after, key) && !_.has(before, key)) {
       return {
         key,
@@ -32,7 +25,13 @@ const buildAst = (before, after) => {
         value: before[key],
       };
     }
-
+    if (before[key] instanceof Object && after[key] instanceof Object) {
+      return {
+        key,
+        type: 'nest',
+        children: buildAst(before[key], after[key]),
+      };
+    }
     return {
       key,
       type: 'change',
