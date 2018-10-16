@@ -5,7 +5,7 @@ const indent = (level, tab = '  ') => tab.repeat(level);
 const stringify = (node, depth) => {
   if (node instanceof Object) {
     const output = Object.entries(node)
-      .map(([key, value]) => f.unchange({ key, value }, depth + 2));
+      .map(([key, value]) => f.unchanged({ key, value }, depth + 2));
 
     return `{\n${output.join('\n')}\n${indent(depth + 2)}}`;
   }
@@ -15,10 +15,10 @@ const stringify = (node, depth) => {
 
 const f = {
   nest: (node, depth, func) => `${indent(depth)}    ${node.key}: ${func(node.children, depth + 2)}`,
-  add: (node, depth) => `${indent(depth)}  + ${node.key}: ${stringify(node.value, depth)}`,
-  delete: (node, depth) => `${indent(depth)}  - ${node.key}: ${stringify(node.value, depth)}`,
-  unchange: (node, depth) => `${indent(depth)}    ${node.key}: ${stringify(node.value, depth)}`,
-  change: (node, depth) => {
+  added: (node, depth) => `${indent(depth)}  + ${node.key}: ${stringify(node.value, depth)}`,
+  deleted: (node, depth) => `${indent(depth)}  - ${node.key}: ${stringify(node.value, depth)}`,
+  unchanged: (node, depth) => `${indent(depth)}    ${node.key}: ${stringify(node.value, depth)}`,
+  changed: (node, depth) => {
     const { key, valueBefore, valueAfter } = node;
 
     const before = `${indent(depth)}  - ${key}: ${stringify(valueBefore, depth)}`;

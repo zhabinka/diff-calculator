@@ -7,21 +7,21 @@ const buildAst = (before, after) => {
     if (_.has(after, key) && !_.has(before, key)) {
       return {
         key,
-        type: 'add',
+        type: 'added',
         value: after[key],
       };
     }
     if (!_.has(after, key) && _.has(before, key)) {
       return {
         key,
-        type: 'delete',
+        type: 'deleted',
         value: before[key],
       };
     }
     if (_.has(after, key) && _.has(before, key) && before[key] === after[key]) {
       return {
         key,
-        type: 'unchange',
+        type: 'unchanged',
         value: before[key],
       };
     }
@@ -34,7 +34,7 @@ const buildAst = (before, after) => {
     }
     return {
       key,
-      type: 'change',
+      type: 'changed',
       valueBefore: before[key],
       valueAfter: after[key],
     };

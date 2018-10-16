@@ -5,10 +5,10 @@ const stringify = value => (_.isObject(value) ? '[complex value]' : value);
 
 const f = {
   nest: (node, path, func) => func(node.children, [...path, node.key]),
-  add: (node, path) => `Property '${getPropertyName(node.key, path)}' was added with value: '${stringify(node.value)}'`,
-  delete: (node, path) => `Property '${getPropertyName(node.key, path)}' was removed`,
-  unchange: () => [],
-  change: (node, path) => {
+  added: (node, path) => `Property '${getPropertyName(node.key, path)}' was added with value: '${stringify(node.value)}'`,
+  deleted: (node, path) => `Property '${getPropertyName(node.key, path)}' was removed`,
+  unchanged: () => [],
+  changed: (node, path) => {
     const { key, valueBefore, valueAfter } = node;
 
     return `Property '${getPropertyName(key, path)}' was updated. From ${stringify(valueBefore)} to ${stringify(valueAfter)}`;
