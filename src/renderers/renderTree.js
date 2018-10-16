@@ -3,14 +3,14 @@ import _ from 'lodash';
 const indent = (level, tab = '  ') => tab.repeat(level);
 
 const stringify = (node, depth) => {
-  if (node instanceof Object) {
-    const output = Object.entries(node)
-      .map(([key, value]) => f.unchanged({ key, value }, depth + 2));
-
-    return `{\n${output.join('\n')}\n${indent(depth + 2)}}`;
+  if (!_.isObject(node)) {
+    return node;
   }
 
-  return node;
+  const output = Object.entries(node)
+    .map(([key, value]) => f.unchanged({ key, value }, depth + 2));
+
+  return `{\n${output.join('\n')}\n${indent(depth + 2)}}`;
 };
 
 const f = {
