@@ -9,3 +9,5 @@ flow-typed
 .config/
 .npm/
 .npmrc
+package-lock.json
+
